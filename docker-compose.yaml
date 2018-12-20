@@ -1,0 +1,24 @@
+version: '3'
+services:
+  spring-boot:
+    container_name: spring-boot
+    build:
+      context: .
+    depends_on:
+      - mysql
+    environment:
+      - DATABASE_HOST= host.docker.internal
+    ports:
+      - "8087:8080"
+
+
+  mysql:
+     container_name: mysqlTest
+     image: mysql/mysql-server:5.7
+     environment:
+      MYSQL_DATABASE: 'e-commerce'
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_ROOT_HOST: '%'
+     #ports:
+     #- "3306:3306"
+     restart: always
